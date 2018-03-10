@@ -6,11 +6,12 @@ class LandingPage extends StatelessWidget {
     return new Material(
       color: Colors.amberAccent,
       child: new InkWell(
+        onTap: () => print("You tapped the page!"),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text("Lets Quiz~!"),
-            new Text("Tap to start!!!")
+            new Text("Lets Quiz~!", style: new TextStyle(color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.bold)),
+            new Text("Tap to start!!!", style: new TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),)
           ], // Widget
         ), // Column
       ), // Inkwell
