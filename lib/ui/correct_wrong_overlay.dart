@@ -9,20 +9,21 @@ class CorrectWrongOverlay extends StatefulWidget {
   State createState() => new CorrectWrongOverlayState();
 }
 
-class CorrectWrongOverlayState extends State<CorrectWrongOverlay> with SingleTickerProviderStateMixin {
-
+class CorrectWrongOverlayState extends State<CorrectWrongOverlay>
+    with SingleTickerProviderStateMixin {
   Animation<double> _iconAnimation;
   AnimationController _iconAnimationController;
 
   @override
   void initState() {
     super.initState();
-    _iconAnimationController = new AnimationController(duration: new Duration(seconds: 2),vsync: this);
-    _iconAnimation = new CurvedAnimation(parent: _iconAnimationController, curve: Curves.elasticOut);
+    _iconAnimationController = new AnimationController(
+        duration: new Duration(seconds: 2), vsync: this);
+    _iconAnimation = new CurvedAnimation(
+        parent: _iconAnimationController, curve: Curves.elasticOut);
     _iconAnimation.addListener(() => this.setState(() {}));
     _iconAnimationController.forward();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +36,12 @@ class CorrectWrongOverlayState extends State<CorrectWrongOverlay> with SingleTic
             children: <Widget>[
               new Container(
                 decoration: new BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle
-                ),
+                    color: Colors.white, shape: BoxShape.circle),
                 child: new Transform.rotate(
-                  angle: _iconAnimation.value * 2 * 3.145,
-                  child: new Icon(widget._isCorrect == true ? Icons.done : Icons.clear, size: 80.0)
-                ),
+                    angle: _iconAnimation.value * 2 * 3.145,
+                    child: new Icon(
+                        widget._isCorrect == true ? Icons.done : Icons.clear,
+                        size: _iconAnimation.value * 80.0)),
               ),
               new Padding(padding: new EdgeInsets.only(bottom: 10.0)),
               new Text(

@@ -13,6 +13,26 @@ class QuizPage extends StatefulWidget {
 }
 
 class QuizPageState extends State<QuizPage> {
+  
+  Question currentQuestion;
+  Quiz quiz = new Quiz([
+    new Question("Dank memes are dank", true),
+    new Question("Elon musk is human", false),
+    new Question("Pizza is good for you", false),
+    new Question("Flutter is stupidly awesome", true)
+  ]);
+  String questionText;
+  int questionNumber;
+  bool isCorrect;
+
+  @override
+  void initState() {
+    super.initState();
+    currentQuestion = quiz.nextQuestion;
+    questionText = currentQuestion.question;
+    questionNumber = quiz.questionNumber;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return new Stack(
@@ -21,7 +41,7 @@ class QuizPageState extends State<QuizPage> {
         new Column(
           children: <Widget>[
             new AnswerButton(true, () => print("User input True")),
-            new QuestionText("Pizza is nice", 1),
+            new QuestionText(questionText, questionNumber),
             new AnswerButton(false, () => print("User input False")),
           ],
         ),
