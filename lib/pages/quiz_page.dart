@@ -33,6 +33,14 @@ class QuizPageState extends State<QuizPage> {
     questionText = currentQuestion.question;
     questionNumber = quiz.questionNumber;
   }
+
+  void handleAnswer(bool answer) {
+    isCorrect = (currentQuestion.answer == answer);
+    quiz.answer(isCorrect);
+    this.setState(() {
+      overlayOn = true;
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -41,12 +49,12 @@ class QuizPageState extends State<QuizPage> {
       children: <Widget>[
         new Column(
           children: <Widget>[
-            new AnswerButton(true, () => print("User input True")),
+            new AnswerButton(true, () => handleAnswer(true)),
             new QuestionText(questionText, questionNumber),
-            new AnswerButton(false, () => print("User input False")),
+            new AnswerButton(false, () => handleAnswer(false)),
           ],
         ),
-        overlayOn == true ? new CorrectWrongOverlay(true) : new Container()
+        overlayOn == true ? new CorrectWrongOverlay(isCorrect) : new Container()
       ],
     );
   }
