@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './landing_page.dart';
 
 class ScorePage extends StatelessWidget {
 
@@ -20,7 +21,8 @@ class ScorePage extends StatelessWidget {
               icon: new Icon(Icons.redo),
               color: Colors.white,
               iconSize: 50.0,
-              onPressed: () => "Resatart"),
+              onPressed: () => Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (BuildContext context) => new LandingPage()), (Route route) => route == null),
+          )
         ],
       )
     );
