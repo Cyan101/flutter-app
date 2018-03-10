@@ -19,7 +19,7 @@ class QuizPageState extends State<QuizPage> {
         new Column(
           children: <Widget>[
             new AnswerButton(true, () => print("User input True")),
-            new QuestionText(),
+            new QuestionText("Pizza is nice", 1),
             new AnswerButton(false, () => print("User input False")),
           ],
         ),
