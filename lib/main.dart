@@ -11,6 +11,7 @@ void main() {
               style: new TextStyle(
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,
+                fontSize: 18.0,
               ),
             ),
             textDirection: TextDirection.ltr,
