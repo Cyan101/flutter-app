@@ -7,6 +7,7 @@ class LandingPage extends StatelessWidget {
       color: Colors.amberAccent,
       child: new InkWell(
         child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Text("Lets Quiz~!"),
             new Text("Tap to start!!!")
