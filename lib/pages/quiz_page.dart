@@ -24,6 +24,7 @@ class QuizPageState extends State<QuizPage> {
   String questionText;
   int questionNumber;
   bool isCorrect;
+  bool overlayOn = false;
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class QuizPageState extends State<QuizPage> {
             new AnswerButton(false, () => print("User input False")),
           ],
         ),
-        new CorrectWrongOverlay(true)
+        overlayOn == true ? new CorrectWrongOverlay(true) : new Container()
       ],
     );
   }
