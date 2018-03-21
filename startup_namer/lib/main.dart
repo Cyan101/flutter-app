@@ -22,6 +22,7 @@ class RandomWords extends StatefulWidget {
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _saved = new Set<WordPair>();
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -33,9 +34,8 @@ class RandomWordsState extends State<RandomWords> {
         // separate the entries. Note that the divider may be difficult
         // to see on smaller devices.
         itemBuilder: (context, i) {
-          // Add a one-pixel-high divider widget before each row in theListView.
-          if (i.isOdd) return new Divider();
-
+          // Add a divider widget before each row in theListView.
+          if (i.isOdd) return new Divider(height: 6.0);
           // The syntax "i ~/ 2" divides i by 2 and returns an integer result.
           // For example: 1, 2, 3, 4, 5 becomes 0, 1, 1, 2, 2.
           // This calculates the actual number of word pairings in the ListView,
@@ -52,11 +52,25 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
+    final alreadySaved = _saved.contains(pair);
     return new ListTile(
       title: new Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
+      trailing: new Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.pink : null,
+      ),
+      onTap: () {
+        setState(() { // Calling setState() triggers a call to the build() method for the State object, resulting in an update to the UI.
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      },
     );
   }
 
